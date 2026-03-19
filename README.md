@@ -7,7 +7,7 @@ A simple task queue system where:
 - each task is processed exactly once
 - order is preserved (FIFO)
 
-## Example
+## Usage
 Add tasks:
 - resize_image_1
 - resize_image_2
@@ -15,3 +15,8 @@ Add tasks:
 Worker output:
 processing resize_image_1
 processing resize_image_2
+
+## Next Steps
+- persist queue to disk (so tasks survive restart)
+- prevent duplicate processing
+- support multiple workers
