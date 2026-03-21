@@ -17,11 +17,6 @@ def save_queue(queue):
 
 def add_task(task):
     queue = load_queue()
-
-    if task in queue:
-        print(f"Task '{task}' already exists. Skipping.")
-        return
-
     queue.append(task)
     save_queue(queue)
 

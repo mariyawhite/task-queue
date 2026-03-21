@@ -11,9 +11,7 @@ A simple task queue system where:
 
 ### Add tasks
 ```bash
-# example (from Python REPL or script)
-add_task("resize_image_1")
-add_task("resize_image_2")
+python3 tasks.py
 ```
 
 ### Run worker
@@ -23,12 +21,10 @@ python3 worker.py
 
 ### Output
 ```bash
-processing resize_image_1
-processing resize_image_2
+processing task1
+processing task2
 ```
 
 ## Next Steps
-- persist queue to disk (so tasks survive restart)
-- prevent duplicate processing
 - support multiple workers
-- move task creation into a script or CLI command
+- build a CLI interface for adding and processing tasks
