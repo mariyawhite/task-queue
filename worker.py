@@ -28,3 +28,4 @@ while True:
 
     print(f"processing {task}")
     save_completed(task)
+    completed.add(task)
