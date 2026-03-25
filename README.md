@@ -1,11 +1,20 @@
 # Task Queue
 
-## Goal
-A simple task queue system where:
-- tasks are added to a queue
-- a worker processes tasks one at a time
-- each task is processed exactly once
-- order is preserved (FIFO)
+## Overview
+
+A file-backed FIFO task queue with a worker that processes tasks exactly once.
+
+Designed to explore reliability, persistence, and task coordination, including handling duplicate processing and maintaining consistent state across runs.
+
+## Features
+
+- FIFO task ordering  
+- Exactly-once processing (idempotent execution)  
+- Persistent storage using text files  
+- Separation of concerns:
+  - `tasks.py` → add tasks  
+  - `queue.py` → manage queue  
+  - `worker.py` → process tasks  
 
 ## Usage
 
