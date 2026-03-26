@@ -29,3 +29,28 @@ def get_task():
     task = queue.pop(0)
     save_queue(queue)
     return task
+
+
+import sys
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python3 queue.py [add <task> | run]")
+        sys.exit(1)
+
+    command = sys.argv[1]
+
+    if command == "add":
+        if len(sys.argv) < 3:
+            print("Usage: python3 queue.py add <task>")
+            sys.exit(1)
+
+        task = sys.argv[2]
+        add_task(task)
+
+    elif command == "run":
+        from worker import run_worker
+        run_worker()
+
+    else:
+        print(f"Unknown command: {command}")

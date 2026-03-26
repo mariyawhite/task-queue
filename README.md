@@ -2,30 +2,31 @@
 
 ## Overview
 
-A file-backed FIFO task queue with a worker that processes tasks exactly once.
+A file-backed FIFO task queue with a worker that processes tasks safely using idempotent execution.
 
 Designed to explore reliability, persistence, and task coordination, including handling duplicate processing and maintaining consistent state across runs.
 
 ## Features
 
-- FIFO task ordering  
-- Exactly-once processing (idempotent execution)  
-- Persistent storage using text files  
+- FIFO task ordering
+- Idempotent task processing (prevents duplicate execution)
+- Persistent storage using local text files
+- CLI interface for interacting with the system
 - Separation of concerns:
-  - `tasks.py` → add tasks  
-  - `queue.py` → manage queue  
-  - `worker.py` → process tasks  
+  - `queue.py` → CLI + queue management
+  - `worker.py` → task processing
 
 ## Usage
 
 ### Add tasks
 ```bash
-python3 tasks.py
+python3 queue.py add task1
+python3 queue.py add task2
 ```
 
-### Run worker
+### Process tasks
 ```bash
-python3 worker.py
+python3 queue.py run
 ```
 
 ### Output
@@ -36,4 +37,5 @@ processing task2
 
 ## Next Steps
 - support multiple workers
-- build a CLI interface for adding and processing tasks
+- add task identifiers (IDs)
+- add timestamps for tasks
