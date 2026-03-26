@@ -2,18 +2,18 @@
 
 ## Overview
 
-A file-backed FIFO task queue with a worker that processes tasks safely using idempotent execution.
+A file-backed FIFO task queue with a worker that processes tasks and tracks completed work to avoid duplicate execution.
 
-Designed to explore reliability, persistence, and task coordination, including handling duplicate processing and maintaining consistent state across runs.
+Built to explore persistence, simple idempotency, and the interaction between a queue and a worker process.
 
 ## Features
 
 - FIFO task ordering
-- Idempotent task processing (prevents duplicate execution)
 - Persistent storage using local text files
-- CLI interface for interacting with the system
+- Basic idempotent processing via completed task tracking
+- CLI interface for adding and processing tasks
 - Separation of concerns:
-  - `queue.py` → CLI + queue management
+  - `queue.py` → queue management and CLI
   - `worker.py` → task processing
 
 ## Usage
