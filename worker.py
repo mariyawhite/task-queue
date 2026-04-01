@@ -9,9 +9,9 @@ def load_completed():
         return set()
 
 
-def save_completed(task):
+def save_completed(task_id):
     with open(COMPLETED_FILE, "a") as f:
-        f.write(task + "\n")
+        f.write(task_id + "\n")
 
 def run_worker():
     from queue import get_task
@@ -23,10 +23,11 @@ def run_worker():
         if not task:
             break
 
-        if task in completed:
+        if task["id"] in completed:
             print(f"skipping already completed {task}")
             continue
 
-        print(f"processing {task}")
-        save_completed(task)
-        completed.add(task)
+        if task["type"] == "print":
+            print(f"processing {task['message']}")
+        save_completed(task["id"])
+        completed.add(task["id"])

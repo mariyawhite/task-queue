@@ -1,10 +1,13 @@
 QUEUE_FILE = "queue.txt"
 
+import json
+import uuid
+
 
 def load_queue():
     try:
         with open(QUEUE_FILE, "r") as f:
-            return [line.strip() for line in f.readlines()]
+            return [json.loads(line.strip()) for line in f]
     except FileNotFoundError:
         return []
 
@@ -12,11 +15,16 @@ def load_queue():
 def save_queue(queue):
     with open(QUEUE_FILE, "w") as f:
         for task in queue:
-            f.write(task + "\n")
+            f.write(json.dumps(task) + "\n")
 
 
-def add_task(task):
+def add_task(message):
     queue = load_queue()
+    task = {
+        "id": str(uuid.uuid4()),
+        "type": "print",
+        "message": message
+    }
     queue.append(task)
     save_queue(queue)
 
